@@ -8,29 +8,36 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace AvaloniaApplication2.ViewModels;
 
-public partial class MainViewModel : ViewModelBase
+public partial class MainViewModel : ObservableObject
 {
-    private List<Bitmap> aPictures = new();
-    private bool emoteStarted = false;
+    private AvatarBehaveourHandler avatarHandler = new AvatarBehaveourHandler();
+    public List<Bitmap> aPictures = new();
+    public bool emoteStarted = false;
 
     [ObservableProperty]
-    private string _greeting = "Welcome to Avalonia!";
+    private string addTaskAlert = "";
     [ObservableProperty]
-    public Bitmap assistant = new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaApplication2/Assets/Assistant.png")));
+    public Bitmap assistant = new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaApplication2/Assets/Commissar.webp")));
 
     [RelayCommand]
     public void SetEmoteO()
     {
-        if (!emoteStarted)
-        {
-        Assistant = aPictures[1];
-        emoteStarted = true;
-        DispatcherTimer.RunOnce(() => SetPicture(), TimeSpan.FromSeconds(0.8f));
-        }
+        avatarHandler.Emote();
     }
-    private void SetPicture()
+    [RelayCommand] 
+    public void SetCurrentAvatar(int avatarIndex)
+    {
+        avatarHandler.SetAvatar(avatarIndex);
+    }
+    public void SetPicture()
     {
         Assistant = aPictures[0];
+        AddTaskAlert = "";
+        emoteStarted = false;
+    }
+    public void ClearDialgueField()
+    {
+        AddTaskAlert = "";
         emoteStarted = false;
     }
 
@@ -38,5 +45,12 @@ public partial class MainViewModel : ViewModelBase
     {
         aPictures.Add(new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaApplication2/Assets/Assistant.png"))));
         aPictures.Add(new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaApplication2/Assets/AssistantO.png"))));
+        aPictures.Add(new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaApplication2/Assets/Commissar.webp"))));
+    }
+    public void InitAvatars()
+    {
+        avatarHandler.AddAvatar(new Assistant(avatarHandler,this));
+        avatarHandler.AddAvatar(new Commisar(avatarHandler,this));
+        avatarHandler.SetAvatar(0);
     }
 }

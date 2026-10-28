@@ -631,3 +631,4 @@ D:\CsharpProjects\AvaloniaApplication2\AvaloniaApplication2\obj\Debug\net9.0\ref
 D:\CsharpProjects\AvaloniaApplication2\AvaloniaApplication2\obj\Debug\net9.0\AvaloniaApplication2.pdb
 D:\CsharpProjects\AvaloniaApplication2\AvaloniaApplication2\obj\Debug\net9.0\AvaloniaApplication2.genruntimeconfig.cache
 D:\CsharpProjects\AvaloniaApplication2\AvaloniaApplication2\obj\Debug\net9.0\ref\AvaloniaApplication2.dll
+D:\CsharpProjects\AvaloniaApplication2\AvaloniaApplication2\obj\Debug\net9.0\AvaloniaApplication2.sourcelink.json

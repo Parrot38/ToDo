@@ -25,6 +25,7 @@ public partial class MainWindow : Window
             if (DataContext is MainViewModel vm)
             {
                 vm.InitPictures(); 
+                vm.InitAvatars();
             }
         };
         
@@ -91,7 +92,7 @@ public partial class MainWindow : Window
     private void AddTask()
     {
         var text = TextBox_1.Text?.Trim();
-        if (DataContext is MainViewModel vm)
+        if (DataContext is MainViewModel vm && !string.IsNullOrEmpty(text))
         {
             vm.SetEmoteO();
         }

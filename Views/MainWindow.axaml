@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:AvaloniaApplication2.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:emit="using:System.Reflection.Emit"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaApplication2.Views.MainWindow"
         x:DataType="vm:MainViewModel"
@@ -19,13 +19,44 @@
         <vm:MainViewModel />
     </Design.DataContext>
 
-    <Grid RowDefinitions="40,auto,200" ColumnDefinitions="195,auto,5"
+    <Grid RowDefinitions="40,auto,250,100" ColumnDefinitions="195,auto,5"
     ShowGridLines="False" Margin="10">
+
         <Image Grid.Column="0" Grid.Row="2"
             Source="{Binding Assistant}"
-            Stretch="UniformToFill">
-
+            Width="180"
+            VerticalAlignment="Center"
+            Stretch="Uniform">
         </Image>
+
+        <Button Grid.Column="0" Grid.Row="1"
+            CornerRadius="0"
+            Width="195" Height="40"
+            VerticalContentAlignment="Center"
+            HorizontalContentAlignment="Center"
+            Content="Change Avatar">
+            <Button.Flyout>
+                <MenuFlyout Placement="Bottom">
+                    <MenuItem Header="CommisarWH"
+                        Command="{Binding SetCurrentAvatarCommand}">
+                        <MenuItem.CommandParameter><sys:Int32>1</sys:Int32></MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Assistant"
+                        Command="{Binding SetCurrentAvatarCommand}">
+                        <MenuItem.CommandParameter><sys:Int32>0</sys:Int32></MenuItem.CommandParameter>
+                    </MenuItem>
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+
+        <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"
+        Margin="0,10,0,0"
+        Padding="10,10,10,10"
+        Background="#868A8A8A"
+        Content="{Binding AddTaskAlert}">
+
+        </Label>
+
         <TextBox Grid.Column="1" Grid.Row="1"
         TextAlignment="Center" Padding="10"
         KeyDown="AddToListOnKey"
@@ -63,8 +94,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Ok"
-            Command="{Binding SetEmoteOCommand}"></Button>
-    
     </Grid>
 </Window>
