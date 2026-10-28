@@ -1,0 +1,70 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:avaloniaapplication2="using:AvaloniaApplication2"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication2.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:emit="using:System.Reflection.Emit"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApplication2.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApplication2">
+
+
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <Grid RowDefinitions="40,auto,200" ColumnDefinitions="195,auto,5"
+    ShowGridLines="False" Margin="10">
+        <Image Grid.Column="0" Grid.Row="2"
+            Source="{Binding Assistant}"
+            Stretch="UniformToFill">
+
+        </Image>
+        <TextBox Grid.Column="1" Grid.Row="1"
+        TextAlignment="Center" Padding="10"
+        KeyDown="AddToListOnKey"
+        Watermark="There will be your tasks" WatermarkForeground="SpringGreen"
+        CornerRadius="0" BorderBrush="LightGray"
+        x:Name="TextBox_1"> 
+        </TextBox>
+
+        <ListBox Grid.Column="1" Grid.Row="2" 
+        Width="580" MinHeight="40"
+        FontSize="12"
+        x:Name="ListBox_1">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="avaloniaapplication2:TaskItem">                  
+                            <DockPanel>
+                                <!-- Текст задачи -->
+                                <TextBlock Text="{Binding Text}"
+                                        VerticalAlignment="Center"
+                                        DockPanel.Dock="Left"
+                                        Margin="0,0,10,0"/>
+                                
+                                <!-- Кнопка "Выполнено" -->
+                                <Button Content="✓" Background="Black"
+                                        DockPanel.Dock="Right"
+                                        Margin="5,0,0,0"
+                                        Click="CompleteButton_OnClick"
+                                        Tag="{Binding}"/>
+                                
+                                <!-- Кнопка "Удалить" -->
+                                <Button Content="✗" Background="Black"
+                                        DockPanel.Dock="Right"
+                                        Click="RemoveFromList"
+                                        Tag="{Binding}"/>
+                            </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Ok"
+            Command="{Binding SetEmoteOCommand}"></Button>
+    
+    </Grid>
+</Window>

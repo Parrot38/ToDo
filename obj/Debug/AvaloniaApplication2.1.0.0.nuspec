@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>AvaloniaApplication2</id>
+    <version>1.0.0</version>
+    <authors>AvaloniaApplication2</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net9.0">
+        <dependency id="Avalonia" version="12.1.0" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Desktop" version="12.1.0" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Fonts.Inter" version="12.1.0" exclude="Build,Analyzers" />
+        <dependency id="Avalonia.Themes.Fluent" version="12.1.0" exclude="Build,Analyzers" />
+        <dependency id="AvaloniaUI.DiagnosticsSupport" version="2.2.3" exclude="Build,Analyzers" />
+        <dependency id="CommunityToolkit.Mvvm" version="8.4.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\C#Projects\AvaloniaApplication2\AvaloniaApplication2\bin\Debug\net9.0\AvaloniaApplication2.runtimeconfig.json" target="lib\net9.0\AvaloniaApplication2.runtimeconfig.json" />
+    <file src="E:\C#Projects\AvaloniaApplication2\AvaloniaApplication2\bin\Debug\net9.0\AvaloniaApplication2.dll" target="lib\net9.0\AvaloniaApplication2.dll" />
+  </files>
+</package>
