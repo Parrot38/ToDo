@@ -35,7 +35,6 @@ public partial class MainWindow : Window
         MaxWidth = 800;
         MaxHeight = 500;
 
-        // Позиция при запуске
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
         dbContext = new AppDbContext();
@@ -69,13 +68,10 @@ public partial class MainWindow : Window
         if (sender is Button button && button.Tag is TaskItem task)
         {
             task.IsCompleted = !task.IsCompleted;
-            // Визуально отмечаем выполненную задачу
-            // Можно добавить стиль или изменить текст
             if (task.IsCompleted)
             {
                 button.Content = "Complete";
                 button.Foreground = new SolidColorBrush(Colors.SpringGreen);
-                // Можно добавить изменение фона у родительского Border
             }
 
         }
@@ -99,27 +95,24 @@ public partial class MainWindow : Window
         {
             vm.SetEmoteO();
         }
-        // Проверяем, что текст не пустой
+
         if (string.IsNullOrEmpty(text))
         {
             return;
         }
 
-        // Создаём новую задачу
         var newTask = new TaskItem
         {
             Text = text,
             IsCompleted = false
         };
 
-        // Добавляем в БД
         dbContext.Items.Add(newTask);
         dbContext.SaveChanges();  // Здесь выполняется INSERT в SQLite
 
         // Добавляем в список для отображения
         _tasks.Add(newTask);
 
-        // Очищаем поле ввода
         TextBox_1.Text = string.Empty;
         TextBox_1.Focus();
     }

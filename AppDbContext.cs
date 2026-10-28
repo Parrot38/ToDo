@@ -24,7 +24,6 @@ namespace AvaloniaApplication2
                 "app.db"
             );
 
-            // Создаём папку, если её нет
             Directory.CreateDirectory(Path.GetDirectoryName(dbPath));
 
             optionsBuilder.UseSqlite($"Data Source={dbPath}");
